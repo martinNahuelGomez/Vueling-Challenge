@@ -1,6 +1,6 @@
-Install node js and git
-git bash on a desired folder and clone repository into it
-Run "npx cypress run" command on the bash terminal window you having working
+Install node js and git.
+Git bash on a desired folder and clone repository into it.
+Run "npx cypress run" command on the bash terminal window you have been working.
 
 
 CREATOR NOTES:
