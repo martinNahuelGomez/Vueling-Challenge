@@ -1,3 +1,3 @@
 Install node js
-Install cypress
-Run the spec file
+run "npm install cypress --save-dev"
+Run "npx cypress open" and execute the test spec file
