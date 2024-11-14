@@ -11,7 +11,7 @@ Cypress.Commands.add('setDateFromToday', (selector, daysToAdd) => {
     targetMonth = targetMonth.charAt(0).toUpperCase() + targetMonth.slice(1)
 
     // Click on the date picker input to open the calendar
-        cy.get(selector).click()
+    cy.get(selector).click()
 
     // Navigate to the correct month and year if necessary
     function selectMonthYear() {
