@@ -63,3 +63,18 @@ Cypress.Commands.add('selectInsurance', (insuranceType) => {
         }
     })
 })
+
+Cypress.Commands.add('selectInsuranceTypeAndAssertCostDifference', (insuranceType, additionalCost) => {
+    cy.fixture('testData.json').then((testData) => {
+      const locators = testData.locators
+      
+      cy.get(locators.initialPrice).then(($price) => {
+        const totalPriceText = $price.find('span').eq(1).text().trim()
+        const totalPrice = parseFloat(totalPriceText.replace('€', '').replace(',', '.'))
+        const expectedPrice = (totalPrice + additionalCost).toFixed(2).replace('.', ',') + ' €'
+  
+        cy.selectInsurance(insuranceType)
+        cy.get(locators.finalPrice).should('contain', expectedPrice)
+      })
+    })
+  })

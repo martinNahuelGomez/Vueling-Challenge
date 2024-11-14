@@ -18,7 +18,7 @@ describe('Vueling cars rental page tests', () => {
       cy.scrollTo('bottom')
       cy.wait(1000)
       cy.scrollTo('bottom')
-      cy.get(`${locators.carList} ${locators.carListItem}`).contains('SUV').parents(locators.carListItem).find(locators.selectCarButton).click()
+      cy.get(`${locators.carList} ${locators.carListItem}`).contains('SUV').parents(locators.carListItem).find(locators.selectCarButton).click({force: true})
       cy.get(locators.selectedCar).should('contain', 'SUV')
     })
     cy.clearCookies()
@@ -28,9 +28,8 @@ describe('Vueling cars rental page tests', () => {
     cy.fixture('testData.json').then((testData) => {
       const locators = testData.locators
       const insuranceType = testData.data.insurance.basic
-      cy.selectInsurance(insuranceType)
+      cy.selectInsuranceTypeAndAssertCostDifference(insuranceType, 0)
       cy.get(locators.insuranceHeader).should('contain', 'Aún no estás totalmente cubierto')
-      //cy.get(locators.finalPrice).should('contain', '30,80 €')
     })
   })
 
@@ -38,10 +37,9 @@ describe('Vueling cars rental page tests', () => {
     cy.fixture('testData.json').then((testData) => {
       const locators = testData.locators
       const insuranceType = testData.data.insurance.premium
-      cy.selectInsurance(insuranceType)
+      cy.selectInsuranceTypeAndAssertCostDifference(insuranceType, 64.0)
       cy.get(locators.finalPriceDisplayButton).click()
       cy.get(locators.finalPriceRow).contains('Cobertura Premium').should('be.visible')
-      //cy.get(locators.finalPrice).should('contain', '94,80 €')
     })
   })
 })
