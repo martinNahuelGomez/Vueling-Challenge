@@ -68,6 +68,7 @@ Cypress.Commands.add('selectInsuranceTypeAndAssertCostDifference', (insuranceTyp
     cy.fixture('testData.json').then((testData) => {
       const locators = testData.locators
       
+      // Get the initial price and calculate the expected final price
       cy.get(locators.initialPrice).then(($price) => {
         const totalPriceText = $price.find('span').eq(1).text().trim()
         const totalPrice = parseFloat(totalPriceText.replace('€', '').replace(',', '.'))
