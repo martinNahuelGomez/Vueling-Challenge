@@ -13,7 +13,7 @@ describe('Vueling cars rental page tests', () => {
       cy.selectDriverAge(data.driverAge)
       // TODO: Clicking the search button is not working and therefore i added the cy visit to the a resulting url of the search (dates are hardcoded in the url for now)
       // cy.get(locators.submitButton).invoke('removeAttr', 'target').click()
-      cy.visit('https://cars.vueling.com/es/book?pickupDateTime=2024-11-20T10%3A00&returnDateTime=2024-11-22T10%3A00&age=30&clientID=198349&ct=MP&countryID=ES&curr=EUR&elID=1591731571862260&&pickupCountryCode=ES&residenceID=ES&returnCountryCode=ES&pickupID=1774&pickupName=Barcelona%20-%20Aeropuerto&returnID=1774&returnName=Barcelona%20-%20Aeropuerto#/vehicles')
+      cy.visit(data.skipingSearchButtonURL)
       cy.wait(7000)
       cy.scrollTo('bottom')
       cy.wait(1000)

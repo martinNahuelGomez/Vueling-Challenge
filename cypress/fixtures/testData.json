@@ -30,6 +30,7 @@
     "insurance": {
       "basic": "Basic",
       "premium": "Premium"
-    }
+    },
+    "skipingSearchButtonURL": "'https://cars.vueling.com/es/book?pickupDateTime=2024-11-20T10%3A00&returnDateTime=2024-11-22T10%3A00&age=30&clientID=198349&ct=MP&countryID=ES&curr=EUR&elID=1591731571862260&&pickupCountryCode=ES&residenceID=ES&returnCountryCode=ES&pickupID=1774&pickupName=Barcelona%20-%20Aeropuerto&returnID=1774&returnName=Barcelona%20-%20Aeropuerto#/vehicles'"
   }
 }
