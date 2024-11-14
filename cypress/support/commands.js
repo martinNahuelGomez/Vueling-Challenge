@@ -11,7 +11,7 @@ Cypress.Commands.add('setDateFromToday', (selector, daysToAdd) => {
     targetMonth = targetMonth.charAt(0).toUpperCase() + targetMonth.slice(1)
 
     // Click on the date picker input to open the calendar
-    cy.get(selector).click()
+        cy.get(selector).click()
 
     // Navigate to the correct month and year if necessary
     function selectMonthYear() {
@@ -30,24 +30,36 @@ Cypress.Commands.add('setDateFromToday', (selector, daysToAdd) => {
 
     // Select the target date
     cy.fixture('testData.json').then((testData) => {
-        const locators = testData.locators;
-        const formattedDate = `${targetYear}-${String(futureDate.getMonth() + 1).padStart(2, '0')}-${String(targetDay).padStart(2, '0')}`;
-        const dateCellSelector = locators.dateCell.replace("''", `'${formattedDate}'`);
-        cy.get(dateCellSelector).click();
+        const locators = testData.locators
+        const formattedDate = `${targetYear}-${String(futureDate.getMonth() + 1).padStart(2, '0')}-${String(targetDay).padStart(2, '0')}`
+        const dateCellSelector = locators.dateCell.replace("''", `'${formattedDate}'`)
+        cy.get(dateCellSelector).click()
     })
 })
 
 Cypress.Commands.add('selectDriverAge', (driverAge) => {
     cy.fixture('testData.json').then((testData) => {
-        const locators = testData.locators;
+        const locators = testData.locators
 
         // Click the appropriate age group button based on driverAge
         if (driverAge >= 18 && driverAge <= 29) {
-            cy.get(locators.ageButton18to29).click();
+            cy.get(locators.ageButton18to29).click()
         } else if (driverAge >= 30 && driverAge <= 69) {
-            cy.get(locators.ageButton30to69).click();
+            cy.get(locators.ageButton30to69).click()
         } else if (driverAge >= 70) {
-            cy.get(locators.ageButton70plus).click();
+            cy.get(locators.ageButton70plus).click()
         }
-    });
-});
+    })
+})
+
+Cypress.Commands.add('selectInsurance', (insuranceType) => {
+    cy.fixture('testData.json').then((testData) => {
+        const locators = testData.locators
+
+        if (insuranceType === 'Basic') {
+            cy.get(locators.insuranceButton).contains('Continuar con la cobertura limitada').click()
+        } else if (insuranceType === 'Premium') {
+            cy.get(locators.insuranceButton).contains('Continuar con la cobertura premium').click()
+        }
+    })
+})

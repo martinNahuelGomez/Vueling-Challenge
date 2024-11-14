@@ -3,19 +3,32 @@
     "pickupLocationInput": "#pickupLocation",
     "pickupLocationAirportDropdown": "ul[aria-labelledby='list-group-0']",
     "pickupDate": "#ct-pickup-calendar",
-    "returnDate": "#ct-return-date",
+    "returnDate": "#ct-return-calendar",
     "datePickerHeader": ".ct-datepicker",
+    "time": ".ct-timepicker-custom-box--options--item",
     "nextButton": ".ct-next",
     "dateCell": "td[data-date-formatted='']",
     "ageButton18to29": "#ct-age-btn-0",
     "ageButton30to69": "#ct-age-btn-1",
     "ageButton70plus": "#ct-age-btn-2",
-    "submitButton": "#ct-button-search"
+    "submitButton": "#ct-button-search",
+    "carList": "#ct-availability-list",
+    "carListItem": ".ct-car-list-item__wrap",
+    "selectCarButton": ".ct-vehicle-block-buttons-container button",
+    "selectedCar": ".ct-vehicle-block__car",
+    "insuranceButton": ".ct-axa-card-option--insurance-book-button",
+    "insuranceHeader": ".ct-insurance-upsell__header",
+    "finalPriceDisplayButton": ".ct-navigation-header__price-button",
+    "finalPriceRow": ".ct-price-line-item",
+    "finalPrice": ".ct-navigation-header__total-amount"
   },
   "data": {
     "pickupLocation": "Barcelona Airport",
     "pickupLocationDropdownMenuOption": "Barcelona - Airport (BCN)",
     "driverAge": 40,
-    "insurance": ["Basic", "Premium"]
+    "insurance": {
+      "basic": "Basic",
+      "premium": "Premium"
+    }
   }
 }
