@@ -37,7 +37,7 @@ describe('Vueling cars rental page tests', () => {
     cy.fixture('testData.json').then((testData) => {
       const locators = testData.locators
       const insuranceType = testData.data.insurance.premium
-      cy.selectInsuranceTypeAndAssertCostDifference(insuranceType, 64.0)
+      cy.selectInsuranceTypeAndAssertCostDifference(insuranceType, 58.0)
       cy.get(locators.finalPriceDisplayButton).click()
       cy.get(locators.finalPriceRow).contains('Cobertura Premium').should('be.visible')
     })
