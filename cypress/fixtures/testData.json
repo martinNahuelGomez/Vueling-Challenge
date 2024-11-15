@@ -20,6 +20,7 @@
     "finalPriceDisplayButton": ".ct-navigation-header__price-button",
     "finalPriceRow": ".ct-price-line-item",
     "initialPrice": ".ct-price-summary__item--total .ct-price-line-price",
+    "premiumPrice": "[data-auto-id='insuranceAxaPremiumPricePerDay']",
     "finalPrice": ".ct-navigation-header__total-amount"
   },
   "data": {

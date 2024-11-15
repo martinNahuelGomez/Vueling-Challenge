@@ -60,10 +60,19 @@ Cypress.Commands.add('selectInsurance', (insuranceType) => {
     })
 })
 
-Cypress.Commands.add('selectInsuranceTypeAndAssertCostDifference', (insuranceType, additionalCost) => {
+Cypress.Commands.add('selectInsuranceTypeAndAssertCostDifference', (insuranceType) => {
     cy.fixture('testData.json').then((testData) => {
       const locators = testData.locators
-      
+      let additionalCost = 0
+  
+      if (insuranceType === 'Premium') {
+      // Capture the premium insurance cost per day
+      cy.get(locators.premiumPrice).then(($price) => {
+        const premiumCostText = $price.text().trim();
+        const premiumCost = parseFloat(premiumCostText.replace('€', '').replace(',', '.'));
+        additionalCost = premiumCost * 2;
+      })}
+  
       // Get the initial price and calculate the expected final price
       cy.get(locators.initialPrice).then(($price) => {
         const totalPriceText = $price.find('span').eq(1).text().trim()

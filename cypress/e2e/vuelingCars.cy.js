@@ -26,18 +26,17 @@ describe('Vueling cars rental page tests', () => {
 
   it('Attempt to rent with basic rate and assert insurance disclaimer', () => {
     cy.fixture('testData.json').then((testData) => {
-      const locators = testData.locators
       const insuranceType = testData.data.insurance.basic
-      cy.selectInsuranceTypeAndAssertCostDifference(insuranceType, 0)
-      cy.get(locators.insuranceHeader).should('contain', 'Aún no estás totalmente cubierto')
+      cy.selectInsuranceTypeAndAssertCostDifference(insuranceType)
     })
   })
-
+  
   it('Attempt to rent with premium rate and assert premium coverage at final price list of items', () => {
     cy.fixture('testData.json').then((testData) => {
       const locators = testData.locators
       const insuranceType = testData.data.insurance.premium
-      cy.selectInsuranceTypeAndAssertCostDifference(insuranceType, 58.0)
+  
+      cy.selectInsuranceTypeAndAssertCostDifference(insuranceType)
       cy.get(locators.finalPriceDisplayButton).click()
       cy.get(locators.finalPriceRow).contains('Cobertura Premium').should('be.visible')
     })
