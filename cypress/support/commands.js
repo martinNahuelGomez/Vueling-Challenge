@@ -2,40 +2,36 @@ Cypress.Commands.add('setDateFromToday', (selector, daysToAdd) => {
     const today = new Date()
     const futureDate = new Date(today)
     futureDate.setDate(today.getDate() + daysToAdd)
-
+  
     const targetDay = futureDate.getDate()
     let targetMonth = futureDate.toLocaleString('default', { month: 'long' })
     const targetYear = futureDate.getFullYear()
-
+  
     // Capitalize the first letter of the month
     targetMonth = targetMonth.charAt(0).toUpperCase() + targetMonth.slice(1)
-
+  
     // Click on the date picker input to open the calendar
     cy.get(selector).click()
-
+  
     // Navigate to the correct month and year if necessary
-    function selectMonthYear() {
-        cy.fixture('testData.json').then((testData) => {
-            const locators = testData.locators
-            cy.get(locators.datePickerHeader).then(($header) => {
-                const currentMonthYear = $header.text()
-                if (!currentMonthYear.includes(targetMonth) || !currentMonthYear.includes(targetYear)) {
-                    cy.get(locators.nextButton).click()
-                    selectMonthYear()
-                }
-            })
-        })
-    }
-    selectMonthYear()
-
+    cy.fixture('testData.json').then((testData) => {
+      const locators = testData.locators
+      cy.get(locators.datePickerHeader).then(($header) => {
+        const currentMonthYear = $header.text()
+        if (!currentMonthYear.includes(targetMonth) || !currentMonthYear.includes(targetYear)) {
+          cy.get(locators.nextButton).click()
+        }
+      })
+    })
+  
     // Select the target date
     cy.fixture('testData.json').then((testData) => {
-        const locators = testData.locators
-        const formattedDate = `${targetYear}-${String(futureDate.getMonth() + 1).padStart(2, '0')}-${String(targetDay).padStart(2, '0')}`
-        const dateCellSelector = locators.dateCell.replace("''", `'${formattedDate}'`)
-        cy.get(dateCellSelector).click()
+      const locators = testData.locators
+      const formattedDate = `${targetYear}-${String(futureDate.getMonth() + 1).padStart(2, '0')}-${String(targetDay).padStart(2, '0')}`
+      const dateCellSelector = locators.dateCell.replace("''", `'${formattedDate}'`)
+      cy.get(dateCellSelector).click()
     })
-})
+  })
 
 Cypress.Commands.add('selectDriverAge', (driverAge) => {
     cy.fixture('testData.json').then((testData) => {
